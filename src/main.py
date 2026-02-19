@@ -1,6 +1,6 @@
 import flet as ft
 
-from .vat_statement_reader import (
+from vat_statement_reader import (
     get_vat_tables,
     get_company,
     get_credit_data,
