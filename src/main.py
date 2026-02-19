@@ -1,6 +1,6 @@
 import flet as ft
 
-from vat_statement_reader import (
+from .vat_statement_reader import (
     get_vat_tables,
     get_company,
     get_credit_data,
@@ -95,9 +95,21 @@ def main(page: ft.Page) -> None:
         "Pick files",
         icon=ft.Icons.FILE_UPLOAD_ROUNDED,
         on_click=pick_files,
+        style=ft.ButtonStyle(bgcolor=ft.Colors.PRIMARY_CONTAINER)
     )
+    def on_clear_click(e: ft.Event):
+        files_list_view.controls.clear()
 
-    page.add(file_picker_btn, files_list_view)
+    clear_btn = ft.OutlinedButton(
+        "Clear", icon=ft.Icons.CLEANING_SERVICES, on_click=on_clear_click)
+
+    page.add(
+        ft.Row(
+            controls=[file_picker_btn, clear_btn],
+            alignment=ft.MainAxisAlignment.SPACE_AROUND,
+        ),
+        files_list_view,
+    )
 
 
 ft.run(main)
